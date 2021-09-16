@@ -4,28 +4,30 @@ plugins {
     id 'java'
 
     id 'checkstyle'
-    id 'org.ec4j.editorconfig' version '0.0.3'
-}
-
-editorconfig {
-    excludes = ['build']
-}
-
-check.dependsOn(editorconfigCheck)
-
-checkstyle {
-    maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
-    configFile = file("${rootDir}/convention/naver-chestyle-rules.xml")
-    //configProperties = ["suppressionFile": "${rootDir}/convention/naver-checkstyle-suppressions.xml"]
-    toolVersion = "8.24"  // checkstyle 버전 8.24 이상 선언
-    configDirectory = file("$rootProject.projectDir/convention/naver-chestyle-rules.xml")
-
+    // id 'org.ec4j.editorconfig' version '0.0.3'
 }
 
 
 // 방법1
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
+
+/*editorconfig {
+    excludes = ['build']
+}*/
+
+/*check.dependsOn(editorconfigCheck)*/
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
+    configFile = file("${rootDir}/convention/naver-chestyle-rules.xml")
+    configProperties = ["suppressionFile": "${rootDir}/convention/naver-checkstyle-suppressions.xml"]
+    toolVersion = "8.24"  // checkstyle 버전 8.24 이상 선언
+
+}
+
 
 group = 'com.theday.backend.renewal'
 version = '0.0.1-SNAPSHOT'
