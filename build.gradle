@@ -18,6 +18,7 @@ checkstyle {
     configFile = file("${rootDir}/convention/naver-chestyle-rules.xml")
     //configProperties = ["suppressionFile": "${rootDir}/convention/naver-checkstyle-suppressions.xml"]
     toolVersion = "8.24"  // checkstyle 버전 8.24 이상 선언
+    configDir = file("$rootProject.projectDir/convention/naver-checkstyle-rules")
 }
 
 
